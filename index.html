@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kristina & Arben | Dasma Jonë</title>
+
+    <!-- Google Fonts - Including Handwriting Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cream: #F5F1E8;
+            --cream-dark: #E8E2D5;
+            --burgundy: #8b3126;
+            --brown: #5C4033;
+            --dark: #2C2C2C;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: rgba(255, 255, 255, 0.95);
+            --whatsapp: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--white);
+        }
+
+        /* Navigation - Badrutt's Style */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: var(--cream);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav.scrolled .nav-logo,
+        .nav.scrolled .nav-links a {
+            color: var(--burgundy);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo span {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            display: block;
+            letter-spacing: 0.05em;
+            text-transform: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+
+        .nav-cta {
+            background: var(--burgundy);
+            color: var(--white) !important;
+            padding: 0.8rem 1.5rem;
+        }
+
+        /* Hero Section - Video */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-media {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        .hero-script {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--white);
+            letter-spacing: 0.3em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            letter-spacing: 0.1em;
+        }
+
+        .hero-date {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--white);
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+
+        /* Season Toggle */
+        .season-toggle {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            z-index: 10;
+            display: flex;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 0.3rem;
+        }
+
+        .season-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: transparent;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .season-btn.active {
+            background: var(--white);
+            color: var(--burgundy);
+        }
+
+        /* Text Section with Handwriting - Special Scroll Effect */
+        .text-section {
+            background: var(--cream);
+            padding: 8rem 2rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .text-section-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Quote Heading - Badrutt's Palace Style */
+        .quote-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            color: var(--burgundy);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .quote-heading em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+
+        /* Decorative line */
+        .quote-line {
+            width: 60px;
+            height: 1px;
+            background: var(--burgundy);
+            margin: 0 auto 1.5rem;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 0.8s ease;
+        }
+
+        .quote-line.visible {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        /* Text reveal animation */
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .text-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.9s;
+        }
+
+        .section-link.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-link:hover {
+            text-decoration-thickness: 2px;
+        }
+
+        /* Section Heading */
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            color: var(--burgundy);
+            letter-spacing: 0.05em;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+
+        /* Two Column Image Section */
+        .two-col-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+        }
+
+        .image-block {
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .image-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .image-block:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-block-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .image-block-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .image-block-link {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Full Width Video Section */
+        .full-video-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .full-video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .full-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 1;
+        }
+
+        .full-video-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .full-video-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 400;
+            color: var(--white);
+            text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+        }
+
+        .full-video-link {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            z-index: 3;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-image {
+            clip-path: inset(100% 0 0 0);
+            transition: clip-path 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-image.visible {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* RSVP Section with Form */
+        .rsvp-section {
+            background: var(--cream);
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .rsvp-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            color: var(--brown);
+            margin-bottom: 1rem;
+        }
+
+        .rsvp-subtitle {
+            font-size: 0.9rem;
+            color: var(--brown);
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rsvp-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(92, 64, 51, 0.3);
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--brown);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+
+        .form-input::placeholder {
+            color: rgba(92, 64, 51, 0.5);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235C4033' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .rsvp-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            border: 1px solid var(--burgundy);
+            border-radius: 0;
+            background: var(--burgundy);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .rsvp-submit:hover {
+            background: var(--brown);
+            border-color: var(--brown);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--cream);
+            padding: 4rem 3rem;
+            border-top: 1px solid rgba(92, 64, 51, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brown);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--brown);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brown);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--brown);
+            color: var(--white);
+        }
+
+        .footer-info {
+            text-align: right;
+        }
+
+        .footer-info p {
+            font-size: 0.8rem;
+            color: var(--brown);
+            line-height: 1.8;
+        }
+
+        .footer-info a {
+            color: var(--brown);
+            text-decoration: underline;
+        }
+
+
+        /* Timeline Section */
+        .timeline-section {
+            background: var(--cream);
+            padding: 6rem 2rem;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .timeline {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--burgundy);
+            min-width: 100px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--brown);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: var(--brown);
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .two-col-section {
+                grid-template-columns: 1fr;
+            }
+
+            .image-block {
+                min-height: 70vh;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-info {
+                text-align: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                letter-spacing: 0.1em;
+            }
+
+            .countdown-grid {
+                gap: 2rem;
+            }
+
+            .countdown-item {
+                flex: 0 0 40%;
+            }
+
+            .season-toggle {
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .whatsapp-btn {
+                right: 1rem;
+                bottom: 1rem;
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-btn svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 2rem;
+            color: var(--burgundy);
+        }
+
+        /* Mobile menu icon */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-icon span {
+            width: 25px;
+            height: 1px;
+            background: var(--white);
+            transition: background 0.3s ease;
+        }
+
+        .nav.scrolled .menu-icon span {
+            background: var(--burgundy);
+        }
+
+        @media (max-width: 1024px) {
+            .menu-icon {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-text">K & A</div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/355691234567?text=Përshëndetje!%20Dua%20të%20konfirmoj%20praninë%20në%20dasmë." class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Na kontaktoni në WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">
+            Kristina & Arben
+            <span>15 Qershor 2025</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#detajet">Detajet</a></li>
+            <li><a href="#programi">Programi</a></li>
+            <li><a href="#rsvp" class="nav-cta">RSVP</a></li>
+        </ul>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video -->
+    <section class="hero" id="hero">
+        <div class="hero-media">
+            <!-- Video placeholder - replace src with your video -->
+            <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
+                <source src="your-wedding-video.mp4" type="video/mp4">
+                <!-- Fallback image if video doesn't load -->
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-script">Ju ftojmë në</p>
+            <h1 class="hero-title">Dasma Jonë</h1>
+            <p class="hero-subtitle">Kristina & Arben</p>
+            <p class="hero-date">15 Qershor 2025 &bull; Tiranë</p>
+        </div>
+        <div class="season-toggle">
+            <button class="season-btn active">Ceremonia</button>
+            <button class="season-btn">Festimi</button>
+        </div>
+    </section>
+
+    <!-- Text Section - Badrutt's Palace Style -->
+    <section class="text-section" id="historia">
+        <div class="text-section-inner">
+            <div class="quote-line"></div>
+            <h2 class="quote-heading text-reveal">
+                E përjetshme, e paharrueshme, e jona —<br>
+                <em>Dashuria</em> që na bashkoi.
+            </h2>
+            <a href="#detajet" class="section-link">Rreth Nesh</a>
+        </div>
+    </section>
+
+
+    <!-- Two Column Section -->
+    <section class="two-col-section" id="detajet">
+        <div class="image-block reveal-image">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1498&q=80" alt="Ceremonia">
+            <div class="image-block-content">
+                <h3 class="image-block-title">Ceremonia</h3>
+            </div>
+            <a href="#" class="image-block-link">Zbulo</a>
+        </div>
+        <div class="image-block reveal-image">
+            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Festimi">
+            <div class="image-block-content">
+                <h3 class="image-block-title">Festimi</h3>
+            </div>
+            <a href="#" class="image-block-link">Zbulo</a>
+        </div>
+    </section>
+
+    <!-- Full Width Video Section - Historia Jonë -->
+    <section class="full-video-section">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80">
+            <source src="your-story-video.mp4" type="video/mp4">
+        </video>
+        <div class="full-video-overlay"></div>
+        <div class="full-video-content">
+            <h2 class="full-video-title">Historia Jonë</h2>
+        </div>
+        <a href="#" class="full-video-link">Zbulo</a>
+    </section>
+
+    <!-- Two Column Section -->
+    <section class="two-col-section">
+        <div class="image-block reveal-image">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Darka">
+            <div class="image-block-content">
+                <h3 class="image-block-title">Darka<br>Festive</h3>
+            </div>
+            <a href="#" class="image-block-link">Zbulo</a>
+        </div>
+        <div class="image-block reveal-image">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Muzika">
+            <div class="image-block-content">
+                <h3 class="image-block-title">Muzikë &<br>Valle</h3>
+            </div>
+            <a href="#" class="image-block-link">Zbulo</a>
+        </div>
+    </section>
+
+    <!-- Full Width Video Section - Aventura -->
+    <section class="full-video-section">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
+            <source src="your-adventure-video.mp4" type="video/mp4">
+        </video>
+        <div class="full-video-overlay"></div>
+        <div class="full-video-content">
+            <h2 class="full-video-title">Aventura</h2>
+        </div>
+        <a href="#" class="full-video-link">Zbulo</a>
+    </section>
+
+    <!-- Two Column Section -->
+    <section class="two-col-section">
+        <div class="image-block reveal-image">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Dhuratat">
+            <div class="image-block-content">
+                <h3 class="image-block-title">Udhëzime<br>për Mysafirët</h3>
+            </div>
+            <a href="#" class="image-block-link">Zbulo</a>
+        </div>
+        <div class="image-block reveal-image">
+            <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" alt="Vendndodhja">
+            <div class="image-block-content">
+                <h3 class="image-block-title">Vendndodhja</h3>
+            </div>
+            <a href="#" class="image-block-link">Zbulo</a>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="programi">
+        <div class="timeline-header">
+            <h2 class="section-heading">Programi i <em>Ditës</em></h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-time">14:00</div>
+                <div class="timeline-content">
+                    <h3>Ceremonia Kishtare</h3>
+                    <p>Kisha Ortodokse, Tiranë</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">16:00</div>
+                <div class="timeline-content">
+                    <h3>Koktej Mirëseardhje</h3>
+                    <p>Hotel Rogner, Tarracë</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">18:00</div>
+                <div class="timeline-content">
+                    <h3>Hyrja e Çiftit</h3>
+                    <p>Salla e Madhe</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">19:00</div>
+                <div class="timeline-content">
+                    <h3>Darka Festive</h3>
+                    <p>Darkë dhe fjalë urimi</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">21:00</div>
+                <div class="timeline-content">
+                    <h3>Vallëzimi i Parë</h3>
+                    <p>Momenti special</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">22:00</div>
+                <div class="timeline-content">
+                    <h3>Festa Vazhdon</h3>
+                    <p>Muzikë dhe valle deri në agim</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section with Form -->
+    <section class="rsvp-section" id="rsvp">
+        <h2 class="rsvp-title">Konfirmoni Praninë</h2>
+        <p class="rsvp-subtitle">Ju lutem konfirmoni praninë tuaj deri më 1 Qershor 2025. Prania juaj do të jetë dhurata më e bukur për ne.</p>
+
+        <form class="rsvp-form" id="rsvpForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Emri</label>
+                    <input type="text" class="form-input" placeholder="Emri juaj" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mbiemri</label>
+                    <input type="text" class="form-input" placeholder="Mbiemri juaj" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" placeholder="email@shembull.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefoni</label>
+                    <input type="tel" class="form-input" placeholder="+355 69 123 4567">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">A do të merrni pjesë?</label>
+                    <select class="form-select" required>
+                        <option value="">Zgjidhni...</option>
+                        <option value="yes">Po, do të jem atje!</option>
+                        <option value="no">Fatkeqësisht jo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Numri i të ftuarve</label>
+                    <select class="form-select">
+                        <option value="1">1 person</option>
+                        <option value="2">2 persona</option>
+                        <option value="3">3 persona</option>
+                        <option value="4">4 persona</option>
+                        <option value="5">5 persona</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label class="form-label">Preferenca ushqimore ose alergji</label>
+                <input type="text" class="form-input" placeholder="Vegjetarian, pa gluten, etj.">
+            </div>
+
+            <div class="form-group full-width">
+                <label class="form-label">Mesazh për çiftin</label>
+                <textarea class="form-textarea" placeholder="Shkruani një mesazh të veçantë për ne..."></textarea>
+            </div>
+
+            <button type="submit" class="rsvp-submit">
+                Dërgo Konfirmimin
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#historia">Historia Jonë</a>
+                <a href="#detajet">Detajet</a>
+                <a href="#programi">Programi</a>
+                <a href="#rsvp">RSVP</a>
+            </div>
+
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="18" cy="6" r="1"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="footer-info">
+                <p>
+                    Kristina & Arben<br>
+                    15 Qershor 2025<br>
+                    Tiranë, Shqipëri<br>
+                    <a href="mailto:dasma@kristinaarben.com">dasma@kristinaarben.com</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .reveal-image, .timeline-item, .text-reveal, .quote-line, .section-link').forEach(el => {
+            observer.observe(el);
+        });
+
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Season toggle buttons
+        document.querySelectorAll('.season-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Form submission
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('.rsvp-submit');
+            const originalText = btn.textContent;
+
+            btn.textContent = 'Duke dërguar...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = 'Faleminderit!';
+                btn.style.background = '#25D366';
+                btn.style.borderColor = '#25D366';
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    btn.style.background = '';
+                    btn.style.borderColor = '';
+                    this.reset();
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
