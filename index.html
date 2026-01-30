@@ -408,10 +408,20 @@
             overflow: hidden;
         }
 
-        .full-video-section video {
+        .full-video-section video,
+        .full-video-section > img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .hero-media > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .full-video-overlay {
@@ -755,14 +765,6 @@
                 letter-spacing: 0.1em;
             }
 
-            .countdown-grid {
-                gap: 2rem;
-            }
-
-            .countdown-item {
-                flex: 0 0 40%;
-            }
-
             .season-toggle {
                 bottom: 2rem;
                 left: 50%;
@@ -779,6 +781,261 @@
             .whatsapp-btn svg {
                 width: 26px;
                 height: 26px;
+            }
+
+            .text-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .full-video-section {
+                height: 70vh;
+            }
+
+            .full-video-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .full-video-link {
+                bottom: 2rem;
+                left: 2rem;
+            }
+
+            .image-block {
+                min-height: 60vh;
+            }
+
+            .image-block-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+
+            .timeline-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .timeline-item {
+                gap: 1rem;
+            }
+
+            .timeline-time {
+                font-size: 1.5rem;
+                min-width: 70px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1rem;
+            }
+
+            .rsvp-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .rsvp-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+
+            .footer {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 100svh;
+            }
+
+            .hero-script {
+                font-size: 0.9rem;
+                letter-spacing: 0.2em;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-date {
+                font-size: 0.65rem;
+            }
+
+            .season-toggle {
+                bottom: 1.5rem;
+            }
+
+            .season-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.6rem;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .nav-logo span {
+                font-size: 0.75rem;
+            }
+
+            .quote-heading {
+                font-size: 1.1rem;
+            }
+
+            .image-block {
+                min-height: 50vh;
+            }
+
+            .full-video-section {
+                height: 60vh;
+            }
+
+            .timeline-time {
+                font-size: 1.2rem;
+                min-width: 60px;
+            }
+
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .rsvp-submit {
+                width: 100%;
+                padding: 1rem 2rem;
+            }
+        }
+
+        /* Venue Section */
+        .venue-section {
+            background: var(--cream);
+            padding: 6rem 2rem;
+        }
+
+        .venue-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .venue-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .venue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+
+        .venue-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            min-height: 400px;
+        }
+
+        .venue-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .venue-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .venue-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .venue-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .venue-address {
+            font-size: 0.9rem;
+            color: var(--brown);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .venue-address strong {
+            display: block;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .venue-map {
+            width: 100%;
+            height: 250px;
+            border: 1px solid rgba(92, 64, 51, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .venue-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .venue-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .venue-btn:hover {
+            color: var(--brown);
+        }
+
+        .venue-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 1024px) {
+            .venue-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .venue-image-wrapper {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .venue-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .venue-map {
+                height: 200px;
             }
         }
 
@@ -864,6 +1121,7 @@
             <li><a href="#historia">Historia</a></li>
             <li><a href="#detajet">Detajet</a></li>
             <li><a href="#programi">Programi</a></li>
+            <li><a href="#vendndodhja">Vendndodhja</a></li>
             <li><a href="#rsvp" class="nav-cta">RSVP</a></li>
         </ul>
         <div class="menu-icon">
@@ -877,9 +1135,9 @@
     <section class="hero" id="hero">
         <div class="hero-media">
             <!-- Video placeholder - replace src with your video -->
+            <!-- Replace poster with: assets/images/hero-poster.jpg and video with: assets/videos/hero-video.mp4 -->
             <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
-                <source src="your-wedding-video.mp4" type="video/mp4">
-                <!-- Fallback image if video doesn't load -->
+                <source src="assets/videos/hero-video.mp4" type="video/mp4">
             </video>
             <div class="hero-video-overlay"></div>
         </div>
@@ -927,9 +1185,10 @@
     </section>
 
     <!-- Full Width Video Section - Historia Jonë -->
+    <!-- Replace poster with: assets/images/story-poster.jpg and video with: assets/videos/story-video.mp4 -->
     <section class="full-video-section">
         <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80">
-            <source src="your-story-video.mp4" type="video/mp4">
+            <source src="assets/videos/story-video.mp4" type="video/mp4">
         </video>
         <div class="full-video-overlay"></div>
         <div class="full-video-content">
@@ -957,9 +1216,10 @@
     </section>
 
     <!-- Full Width Video Section - Aventura -->
+    <!-- Replace poster with: assets/images/adventure-poster.jpg and video with: assets/videos/adventure-video.mp4 -->
     <section class="full-video-section">
         <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
-            <source src="your-adventure-video.mp4" type="video/mp4">
+            <source src="assets/videos/adventure-video.mp4" type="video/mp4">
         </video>
         <div class="full-video-overlay"></div>
         <div class="full-video-content">
@@ -1037,6 +1297,54 @@
         </div>
     </section>
 
+    <!-- Venue Section with Map -->
+    <section class="venue-section" id="vendndodhja">
+        <div class="venue-container">
+            <div class="venue-header">
+                <h2 class="section-heading">Vendndodhja e <em>Dasmës</em></h2>
+            </div>
+            <div class="venue-grid">
+                <div class="venue-image-wrapper reveal-image">
+                    <!-- Replace with your venue image: assets/images/venue.jpg -->
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1498&q=80" alt="Hotel Rogner Tirana">
+                </div>
+                <div class="venue-info reveal">
+                    <h3 class="venue-name">Hotel Rogner Tirana</h3>
+                    <p class="venue-address">
+                        Bulevardi Dëshmorët e Kombit<br>
+                        Tiranë 1001, Shqipëri
+
+                        <strong>Ceremonia:</strong>
+                        Kisha Ortodokse e Ringjalljes<br>
+                        Ora 14:00
+
+                        <strong>Festa:</strong>
+                        Hotel Rogner, Salla Ballroom<br>
+                        Ora 16:00 - 02:00
+                    </p>
+
+                    <!-- Google Maps Embed - Replace with your venue coordinates -->
+                    <div class="venue-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.0547847366847!2d19.818686776642475!3d41.32806299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350310cd926b5b1%3A0x994fb4a48d0a3bd7!2sRogner%20Hotel%20Tirana!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <a href="https://www.google.com/maps/dir//Rogner+Hotel+Tirana" target="_blank" class="venue-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Merr udhëzime
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- RSVP Section with Form -->
     <section class="rsvp-section" id="rsvp">
         <h2 class="rsvp-title">Konfirmoni Praninë</h2>
@@ -1109,6 +1417,7 @@
                 <a href="#historia">Historia Jonë</a>
                 <a href="#detajet">Detajet</a>
                 <a href="#programi">Programi</a>
+                <a href="#vendndodhja">Vendndodhja</a>
                 <a href="#rsvp">RSVP</a>
             </div>
 
@@ -1196,6 +1505,47 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+            });
+        });
+
+        // Handle video load errors gracefully - show poster image instead
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', function() {
+                // When video fails to load, the poster image will show
+                // Hide the video element to prevent broken video icon
+                this.style.display = 'none';
+                // Create a fallback image from the poster
+                if (this.poster) {
+                    const img = document.createElement('img');
+                    img.src = this.poster;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.position = 'absolute';
+                    img.style.top = '0';
+                    img.style.left = '0';
+                    this.parentNode.insertBefore(img, this);
+                }
+            });
+
+            // Also handle source errors
+            const sources = video.querySelectorAll('source');
+            sources.forEach(source => {
+                source.addEventListener('error', function() {
+                    const vid = this.parentElement;
+                    vid.style.display = 'none';
+                    if (vid.poster) {
+                        const img = document.createElement('img');
+                        img.src = vid.poster;
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.objectFit = 'cover';
+                        img.style.position = 'absolute';
+                        img.style.top = '0';
+                        img.style.left = '0';
+                        vid.parentNode.insertBefore(img, vid);
+                    }
+                });
             });
         });
 
