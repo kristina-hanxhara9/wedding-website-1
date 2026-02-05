@@ -482,12 +482,14 @@
         }
 
         .reveal-image {
-            clip-path: inset(100% 0 0 0);
-            transition: clip-path 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .reveal-image.visible {
-            clip-path: inset(0 0 0 0);
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         /* RSVP Section with Form */
@@ -1183,7 +1185,7 @@
     <!-- Loader -->
     <div class="loader" id="loader">
         <div class="loader-content">
-            <div class="loader-text">Dasma Jonë</div>
+            <div class="loader-text">I & A</div>
         </div>
     </div>
 
@@ -1215,7 +1217,7 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <a href="#" class="nav-logo">
-            Dasma Jonë
+            Ina & Arben
             <span>15 Qershor 2025</span>
         </a>
         <ul class="nav-links">
@@ -1243,7 +1245,7 @@
         <div class="hero-content">
             <p class="hero-script">Ju ftojmë në</p>
             <h1 class="hero-title">Dasma Jonë</h1>
-            <p class="hero-subtitle">Dasma Jonë</p>
+            <p class="hero-subtitle">Ina & Arben</p>
             <p class="hero-date">15 Qershor 2025 &bull; Tiranë</p>
         </div>
         <div class="season-toggle">
@@ -1534,7 +1536,7 @@
 
             <div class="footer-info">
                 <p>
-                    Dasma Jonë<br>
+                    Ina & Arben<br>
                     15 Qershor 2025<br>
                     Tiranë, Shqipëri<br>
                     <a href="mailto:info@dasmajon.com">info@dasmajon.com</a>
@@ -1629,34 +1631,28 @@
             }
         });
 
-        // Scroll reveal animations - lower threshold and add rootMargin for reliable triggering
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // stop watching once revealed
-                }
-            });
-        }, {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.05
-        });
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-image, .timeline-item, .text-reveal, .quote-line, .section-link');
 
-        // Observe all reveal elements
-        document.querySelectorAll('.reveal, .reveal-image, .timeline-item, .text-reveal, .quote-line, .section-link').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Fallback: reveal any still-hidden elements after 4 seconds
-        setTimeout(() => {
-            document.querySelectorAll('.reveal-image:not(.visible)').forEach(el => {
+        function checkReveal() {
+            revealElements.forEach(el => {
+                if (el.classList.contains('visible')) return;
                 const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
+                const windowHeight = window.innerHeight;
+                // Trigger when element is within 80% of viewport height
+                if (rect.top < windowHeight * 0.92) {
                     el.classList.add('visible');
                 }
             });
-        }, 4000);
+        }
+
+        // Check on scroll
+        window.addEventListener('scroll', checkReveal, { passive: true });
+        // Check on load and shortly after
+        checkReveal();
+        setTimeout(checkReveal, 500);
+        setTimeout(checkReveal, 1500);
+        setTimeout(checkReveal, 3000);
 
 
         // Smooth scroll
