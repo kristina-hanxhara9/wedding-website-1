@@ -1039,6 +1039,89 @@
             }
         }
 
+        /* Music Toggle Button */
+        .music-btn {
+            position: fixed;
+            left: 2rem;
+            bottom: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--burgundy);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(139, 49, 38, 0.3);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 49, 38, 0.4);
+        }
+
+        .music-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
+        }
+
+        .music-btn .bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 18px;
+        }
+
+        .music-btn .bar {
+            width: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            animation: none;
+        }
+
+        .music-btn.playing .bar {
+            animation: musicBar 0.8s ease-in-out infinite alternate;
+        }
+
+        .music-btn .bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .music-btn .bar:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+        .music-btn .bar:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+        .music-btn .bar:nth-child(4) { height: 14px; animation-delay: 0.45s; }
+
+        @keyframes musicBar {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+
+        .music-btn .muted-icon {
+            display: none;
+        }
+
+        .music-btn.muted .bars {
+            display: none;
+        }
+
+        .music-btn.muted .muted-icon {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .music-btn {
+                left: 1rem;
+                bottom: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+
+            .music-btn .bar {
+                width: 2.5px;
+            }
+        }
+
         /* Loading animation */
         .loader {
             position: fixed;
@@ -1111,6 +1194,24 @@
         </svg>
     </a>
 
+    <!-- Background Music - Replace src with your song: assets/music/wedding-song.mp3 -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music/wedding-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn muted" id="musicBtn" aria-label="Ndiz/Fik muzikën">
+        <div class="bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <svg class="muted-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <a href="#" class="nav-logo">
@@ -1134,10 +1235,8 @@
     <!-- Hero Section with Video -->
     <section class="hero" id="hero">
         <div class="hero-media">
-            <!-- Video placeholder - replace src with your video -->
-            <!-- Replace poster with: assets/images/hero-poster.jpg and video with: assets/videos/hero-video.mp4 -->
-            <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
-                <source src="assets/videos/hero-video.mp4" type="video/mp4">
+            <video class="hero-video" id="heroVideo" autoplay muted playsinline poster="assets/images/red-proposal.jpg">
+                <source src="assets/videos/ring-pink.mp4" type="video/mp4">
             </video>
             <div class="hero-video-overlay"></div>
         </div>
@@ -1169,14 +1268,14 @@
     <!-- Two Column Section -->
     <section class="two-col-section" id="detajet">
         <div class="image-block reveal-image">
-            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1498&q=80" alt="Ceremonia">
+            <img src="assets/images/marry-proposal.jpg" alt="Ceremonia">
             <div class="image-block-content">
                 <h3 class="image-block-title">Ceremonia</h3>
             </div>
             <a href="#" class="image-block-link">Zbulo</a>
         </div>
         <div class="image-block reveal-image">
-            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Festimi">
+            <img src="assets/images/red-proposal.jpg" alt="Festimi">
             <div class="image-block-content">
                 <h3 class="image-block-title">Festimi</h3>
             </div>
@@ -1185,10 +1284,9 @@
     </section>
 
     <!-- Full Width Video Section - Historia Jonë -->
-    <!-- Replace poster with: assets/images/story-poster.jpg and video with: assets/videos/story-video.mp4 -->
     <section class="full-video-section">
-        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80">
-            <source src="assets/videos/story-video.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline poster="assets/images/sea-lying.jpg">
+            <source src="assets/videos/love-picnic.mp4" type="video/mp4">
         </video>
         <div class="full-video-overlay"></div>
         <div class="full-video-content">
@@ -1200,14 +1298,14 @@
     <!-- Two Column Section -->
     <section class="two-col-section">
         <div class="image-block reveal-image">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Darka">
+            <img src="assets/images/sunset-couple.jpg" alt="Darka">
             <div class="image-block-content">
                 <h3 class="image-block-title">Darka<br>Festive</h3>
             </div>
             <a href="#" class="image-block-link">Zbulo</a>
         </div>
         <div class="image-block reveal-image">
-            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Muzika">
+            <img src="assets/images/legs-hugging.jpg" alt="Muzika">
             <div class="image-block-content">
                 <h3 class="image-block-title">Muzikë &<br>Valle</h3>
             </div>
@@ -1216,10 +1314,9 @@
     </section>
 
     <!-- Full Width Video Section - Aventura -->
-    <!-- Replace poster with: assets/images/adventure-poster.jpg and video with: assets/videos/adventure-video.mp4 -->
     <section class="full-video-section">
-        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
-            <source src="assets/videos/adventure-video.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline poster="assets/images/snow-fight.jpg">
+            <source src="assets/videos/love-snow.mp4" type="video/mp4">
         </video>
         <div class="full-video-overlay"></div>
         <div class="full-video-content">
@@ -1231,14 +1328,14 @@
     <!-- Two Column Section -->
     <section class="two-col-section">
         <div class="image-block reveal-image">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Dhuratat">
+            <img src="assets/images/canada-travel.jpg" alt="Dhuratat">
             <div class="image-block-content">
                 <h3 class="image-block-title">Udhëzime<br>për Mysafirët</h3>
             </div>
             <a href="#" class="image-block-link">Zbulo</a>
         </div>
         <div class="image-block reveal-image">
-            <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" alt="Vendndodhja">
+            <img src="assets/images/snow-with-dog.jpg" alt="Vendndodhja">
             <div class="image-block-content">
                 <h3 class="image-block-title">Vendndodhja</h3>
             </div>
@@ -1305,8 +1402,7 @@
             </div>
             <div class="venue-grid">
                 <div class="venue-image-wrapper reveal-image">
-                    <!-- Replace with your venue image: assets/images/venue.jpg -->
-                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1498&q=80" alt="Hotel Rogner Tirana">
+                    <img src="assets/images/sea-lying.jpg" alt="Hotel Rogner Tirana">
                 </div>
                 <div class="venue-info reveal">
                     <h3 class="venue-name">Hotel Rogner Tirana</h3>
@@ -1455,6 +1551,74 @@
             }, 1500);
         });
 
+        // Hero video: play exactly 3 times then stop
+        const heroVideo = document.getElementById('heroVideo');
+        let heroPlayCount = 0;
+        const heroMaxPlays = 3;
+
+        if (heroVideo) {
+            heroVideo.addEventListener('ended', function() {
+                heroPlayCount++;
+                if (heroPlayCount < heroMaxPlays) {
+                    this.currentTime = 0;
+                    this.play();
+                }
+                // After 3 plays, video stays on last frame
+            });
+        }
+
+        // Background music
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let musicStarted = false;
+
+        // Try to autoplay music on first user interaction
+        function startMusic() {
+            if (!musicStarted && bgMusic) {
+                bgMusic.volume = 0.3;
+                bgMusic.play().then(() => {
+                    musicStarted = true;
+                    musicBtn.classList.remove('muted');
+                    musicBtn.classList.add('playing');
+                }).catch(() => {
+                    // Autoplay blocked, user will need to click the button
+                });
+            }
+            // Remove listeners after first attempt
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('scroll', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        }
+
+        // Listen for first user interaction to start music
+        document.addEventListener('click', startMusic, { once: true });
+        document.addEventListener('scroll', startMusic, { once: true });
+        document.addEventListener('touchstart', startMusic, { once: true });
+
+        // Music toggle button
+        musicBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!musicStarted) {
+                bgMusic.volume = 0.3;
+                bgMusic.play().then(() => {
+                    musicStarted = true;
+                    this.classList.remove('muted');
+                    this.classList.add('playing');
+                }).catch(() => {});
+                return;
+            }
+
+            if (bgMusic.paused) {
+                bgMusic.play();
+                this.classList.remove('muted');
+                this.classList.add('playing');
+            } else {
+                bgMusic.pause();
+                this.classList.remove('playing');
+                this.classList.add('muted');
+            }
+        });
+
         // Navigation scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -1465,25 +1629,34 @@
             }
         });
 
-        // Scroll reveal animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
+        // Scroll reveal animations - lower threshold and add rootMargin for reliable triggering
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // stop watching once revealed
                 }
             });
-        }, observerOptions);
+        }, {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.05
+        });
 
         // Observe all reveal elements
         document.querySelectorAll('.reveal, .reveal-image, .timeline-item, .text-reveal, .quote-line, .section-link').forEach(el => {
             observer.observe(el);
         });
+
+        // Fallback: reveal any still-hidden elements after 4 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.reveal-image:not(.visible)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 4000);
 
 
         // Smooth scroll
