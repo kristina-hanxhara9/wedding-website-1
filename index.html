@@ -72,11 +72,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
-        }
-
-        .intro-video.active {
-            display: block;
         }
 
         .intro-skip {
@@ -1631,7 +1626,7 @@
     <!-- Intro Video Overlay - Auto-plays before website loads -->
     <div class="intro-overlay" id="introOverlay">
         <!-- The intro video - auto-plays muted -->
-        <video class="intro-video active" id="introVideo" playsinline autoplay muted preload="auto">
+        <video class="intro-video" id="introVideo" playsinline autoplay muted preload="auto">
             <source src="./assets/videos/white.mp4" type="video/mp4">
         </video>
 
