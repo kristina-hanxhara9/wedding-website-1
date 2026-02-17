@@ -41,6 +41,188 @@
             line-height: 1.6;
         }
 
+        /* Intro Video Overlay */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-overlay.playing {
+            cursor: default;
+        }
+
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .intro-video.active {
+            display: block;
+        }
+
+        .intro-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .intro-poster.hidden {
+            opacity: 0;
+        }
+
+        .intro-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            transition: opacity 0.5s ease;
+        }
+
+        .intro-content.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .intro-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--white);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .intro-play-btn {
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .intro-play-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .intro-play-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--white);
+            margin-left: 5px;
+        }
+
+        .intro-hint {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .intro-skip {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            z-index: 3;
+        }
+
+        .intro-skip.visible {
+            display: block;
+        }
+
+        .intro-skip:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.9);
+        }
+
+        @media (max-width: 768px) {
+            .intro-play-btn {
+                width: 70px;
+                height: 70px;
+            }
+
+            .intro-play-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .intro-skip {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-play-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .intro-play-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .intro-skip {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
         /* WhatsApp Floating Button */
         .whatsapp-btn {
             position: fixed;
@@ -1547,6 +1729,32 @@
     </style>
 </head>
 <body>
+    <!-- Intro Video Overlay - Plays before website loads -->
+    <div class="intro-overlay" id="introOverlay">
+        <!-- Poster/thumbnail image shown before play -->
+        <img src="./assets/images/red-proposal.jpg" alt="" class="intro-poster" id="introPoster">
+
+        <!-- The intro video - Replace with your intro video -->
+        <video class="intro-video" id="introVideo" playsinline preload="auto" poster="./assets/images/red-proposal.jpg">
+            <source src="./assets/videos/intro-video.mp4" type="video/mp4">
+        </video>
+
+        <!-- Play button content -->
+        <div class="intro-content" id="introContent">
+            <h2 class="intro-title">Ina & Arben</h2>
+            <p class="intro-subtitle">15 Qershor 2025</p>
+            <div class="intro-play-btn" id="introPlayBtn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+            </div>
+            <p class="intro-hint">Kliko për të filluar</p>
+        </div>
+
+        <!-- Skip button (shows during video) -->
+        <button class="intro-skip" id="introSkip">Kalo &rarr;</button>
+    </div>
+
     <!-- Loader -->
     <div class="loader" id="loader">
         <div class="loader-content">
@@ -1922,11 +2130,99 @@
     </footer>
 
     <script>
-        // Loader
+        // Intro Video Functionality
+        const introOverlay = document.getElementById('introOverlay');
+        const introVideo = document.getElementById('introVideo');
+        const introPoster = document.getElementById('introPoster');
+        const introContent = document.getElementById('introContent');
+        const introPlayBtn = document.getElementById('introPlayBtn');
+        const introSkip = document.getElementById('introSkip');
+
+        // Check if user has already seen intro (sessionStorage)
+        const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+
+        if (hasSeenIntro) {
+            // Skip intro if already seen in this session
+            introOverlay.classList.add('hidden');
+        }
+
+        // Play intro video when clicking play button
+        function playIntroVideo() {
+            introContent.classList.add('hidden');
+            introPoster.classList.add('hidden');
+            introVideo.classList.add('active');
+            introOverlay.classList.add('playing');
+            introSkip.classList.add('visible');
+
+            introVideo.play().catch(() => {
+                // If video can't play, go directly to website
+                closeIntro();
+            });
+        }
+
+        // Close intro and show website
+        function closeIntro() {
+            introOverlay.classList.add('hidden');
+            sessionStorage.setItem('hasSeenIntro', 'true');
+            document.body.style.overflow = '';
+        }
+
+        // Play button click
+        introPlayBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            playIntroVideo();
+        });
+
+        // Click anywhere on poster to play
+        introOverlay.addEventListener('click', function(e) {
+            if (!introOverlay.classList.contains('playing') && e.target !== introSkip) {
+                playIntroVideo();
+            }
+        });
+
+        // Skip button
+        introSkip.addEventListener('click', function(e) {
+            e.stopPropagation();
+            introVideo.pause();
+            closeIntro();
+        });
+
+        // When intro video ends, show website
+        introVideo.addEventListener('ended', closeIntro);
+
+        // Handle video load error - skip intro
+        introVideo.addEventListener('error', function() {
+            closeIntro();
+        });
+
+        // Also handle source error
+        const introSource = introVideo.querySelector('source');
+        if (introSource) {
+            introSource.addEventListener('error', function() {
+                closeIntro();
+            });
+        }
+
+        // Prevent scrolling while intro is visible
+        if (!hasSeenIntro) {
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Loader (only shows after intro)
         window.addEventListener('load', () => {
+            // Only show loader if intro is already hidden
+            if (introOverlay.classList.contains('hidden')) {
+                setTimeout(() => {
+                    document.getElementById('loader').classList.add('hidden');
+                }, 1500);
+            }
+        });
+
+        // Hide loader when intro closes
+        introVideo.addEventListener('ended', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-            }, 1500);
+            }, 500);
         });
 
         // Hero video: play exactly 3 times then stop
